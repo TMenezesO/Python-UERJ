@@ -1,3 +1,3 @@
-# Exercícios Aula 1 e 2
+# Exercícios Aula 
 
-https://github.com/TMenezesO/Aula-1.git
+https://github.com/TMenezesO/Python-UERJ.git
