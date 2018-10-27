@@ -39,9 +39,8 @@ def hepgrid():
    new_do_twice(rows)
    horizs_lines()
    
-print(horiz_line(),"+",horiz_line())
 
 #rows()
-#hepgrid()
+hepgrid()
 
 #horizs_lines()
