@@ -46,20 +46,6 @@ def energia_mecanica(k,m,r,lo,v,theta):
 
 
 def pendulo_mola(k,m,lo,r,theta,xo,zo):
-## Definicao das condicoes iniciais do problema
-## Para o caso do pendulo com mola, as posicoes iniciais (xo,zo) devem ser diferentes de 0
-    #m = float(input("Massa (kg): "))
-    #k = float(input("Constante elastica (N/m): "))
-    #lo = float(input("Comprimento natural da mola (m): "))
-    #xo = float(input("Posicao Inicial em x : "))
-    #zo = float(input("Posicao Inicial em z : "))
-    
-    #if xo == 0 and zo == 0:
-    #    print("Escolha xo e zo diferentes:")
-    #else:
-    #    x=xo
-    #    z=zo
-
     
    #Criacao das listas para aceleracao, velocidade e posicao para as duas coordenadas
     
@@ -80,7 +66,9 @@ def pendulo_mola(k,m,lo,r,theta,xo,zo):
 # Definicao do intervalo de tempo 
         t1 = [i/1000 for i in range(0,30000)]
         dt = t1[1] - t1[0]
-        
+
+
+# Condicoes iniciais para o problema        
         #m = 1
         #k = 4*m
         #lo = 2
@@ -101,13 +89,6 @@ def pendulo_mola(k,m,lo,r,theta,xo,zo):
 
             ax = -(k/m)*(r-lo)*math.sin(theta)
             az = -g + (k/m)*(r-lo)*math.cos(theta)
-            
-            #ax = -(4)*(3-2)*math.sin(theta) - ((math.pow(vx,2) + math.pow(vz,2))/(r))*math.sin(theta)
-            #az = -g + (4)*(3-2)*math.cos(theta) - ((math.pow(vx,2) + math.pow(vz,2))/(r))*math.cos(theta)
-        
-
-            
-           # print(ax)
             
             vx = vx + ax*dt
             vz = vz + az*dt
@@ -162,8 +143,8 @@ def pendulo_mola(k,m,lo,r,theta,xo,zo):
         plot_plt(t1,lista_a,"tempo (s)","aceleracao (m/s^2)")
         plot_plt(lista_x,lista_vx,"x (m)","vx (m/s)")
         plot_plt(lista_z,lista_vz,"z (m)","vz (m/s)")
-        plot_plt(lista_x,lista_z,"x","z")
+        plot_plt(lista_x,lista_z,"x (m)","z (m)")
     
   
-# Execucao da funcao para o pendulo com mola                 
+# Execucao da funcao para o pendulo com mola com os parametros para as condicoes iniciais               
 pendulo_mola(4,1,2,3,0.1,.299,-2.99)
