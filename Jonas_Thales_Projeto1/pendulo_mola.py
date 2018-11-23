@@ -78,7 +78,7 @@ def pendulo_mola(k,m,lo,r,theta,xo,zo):
     
     
 # Definicao do intervalo de tempo 
-        t1 = [i/1000 for i in range(0,10000)]
+        t1 = [i/1000 for i in range(0,30000)]
         dt = t1[1] - t1[0]
         
         #m = 1
