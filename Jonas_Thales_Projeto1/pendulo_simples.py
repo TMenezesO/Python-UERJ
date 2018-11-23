@@ -41,7 +41,7 @@ def calculo_theta(x,z):
     return theta
 
 
-def pendulo_simples(xo,zo):
+def pendulo_simples(lo,xo,zo):
     
     #Definicao das condicoes iniciais para  o usuario
     
@@ -49,13 +49,7 @@ def pendulo_simples(xo,zo):
    # lo = float(input("Comprimento natural da mola (m): "))  
    # xo = float(input("Posicao Inicial em x : "))
    # zo = float(input("Posicao Inicial em z : "))
-    
-    x=xo
-    z=zo
-    vx=0
-    vz=0
-    
-    #Criacao das listas para aceleracao, velocidade e posicao para as duas coordenadas
+        #Criacao das listas para aceleracao, velocidade e posicao para as duas coordenadas
     
     lista_vx=[]
     lista_vz=[]
@@ -74,6 +68,12 @@ def pendulo_simples(xo,zo):
 # Definicao do intervalo de tempo 
     t1 = [i/1000 for i in range(0,10000)]
     dt = t1[1] - t1[0]
+    
+    # Condicoes iniciais
+    x=xo
+    z=zo
+    vx=0
+    vz=0
 
     for t in t1:
        
@@ -81,11 +81,9 @@ def pendulo_simples(xo,zo):
         r = calculo_modulo(x,z)
         theta = calculo_theta(x,z)
 
-        #ax = g*math.cos(theta)*math.sin(theta) + ((math.pow(vx,2) + math.pow(vz,2))/(lo))*math.sin(theta)
-        #az = -g +g*math.pow((math.cos(theta)),2) + ((math.pow(vx,2) + math.pow(vz,2))/(lo))*math.cos(theta)
-        ## Consertar as acc
-        ax = -g*math.cos(theta)*math.sin(theta) - ((math.pow(vx*math.cos(theta),2))/(r))
-        az = -g +g*math.pow((math.cos(theta)),2) - ((math.pow(vz*math.sin(theta),2))/(r))
+
+        ax = -g*math.cos(theta)*math.sin(theta) - math.pow(calculo_modulo(vx,vz),2)*math.cos(theta)/lo
+        az = -g + g*math.pow((math.cos(theta)),2) - math.pow(calculo_modulo(vx,vz),2)*math.sin(theta)/lo
         
         vx = vx + ax*dt
         vz = vz + az*dt
@@ -138,9 +136,9 @@ def pendulo_simples(xo,zo):
     plot_plt(t1,lista_v,"tempo (s)","velocidade (m/s)")
     plot_plt(t1,lista_a,"tempo (s)","aceleracao (m/s^2)")
     plot_plt(lista_x,lista_vx,"x (m)","vx (m/s)")
-    plot_plt(lista_z,lista_vz,"z (m)","vx (m/s)")
+    plot_plt(lista_z,lista_vz,"z (m)","vz (m/s)")
     plot_plt(lista_x,lista_z,"x (m)","z (m)")
     
     
 # Execucao da funcao para o pendulo simples 
-pendulo_simples(.299,-2.99)
+pendulo_simples(2,.299,-2.99)
